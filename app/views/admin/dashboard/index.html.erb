@@ -1,0 +1,10 @@
+<h1>Inventory Monitor</h1>
+<% @low_inventories.each do |store, inventory_items| %>
+  <p><%= "Store: #{store.name}" %></p>
+
+  <ul>
+    <% inventory_items.each do |item| %>
+      <li><%= "Product: #{item[:product_name]} | Quantity: #{item[:quantity]}" %></li>
+    <% end %>
+  </ul>
+<% end %>
