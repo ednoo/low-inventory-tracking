@@ -1,0 +1,15 @@
+require: rubocop-rails
+
+Style/Documentation:
+  Enabled: false
+
+Style/DocumentationMethod:
+  Enabled: false
+
+Layout/IndentationConsistency:
+  Enabled: false
+Layout/LineLength:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
