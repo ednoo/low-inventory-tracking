@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   namespace :admin do
     get 'dashboard/index'
+    resources :notification_settings, only: %i[edit update]
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

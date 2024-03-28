@@ -1,0 +1,31 @@
+<h1>Edit Notification Settings</h1>
+
+<%= form_with(model: @notification_setting, url: admin_notification_setting_path, method: :patch) do |form| %>
+  <% if @notification_setting.errors.any? %>
+    <div>
+      <h2><%= pluralize(@notification_setting.errors.count, "error") %> prohibited this notification_setting from being saved:</h2>
+      <ul>
+      <% @notification_setting.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :frequency %>
+    <%= form.select :frequency, NotificationSetting.frequencies.keys.map { |f| [f.capitalize, f] } %>
+  </div>
+  <div>
+    <%= form.label :real_time_notification %>
+    <%= form.check_box :real_time_notification %>
+  </div>
+  <div>
+    <%= form.label :next_notification_at %>
+    <%= form.datetime_select :next_notification_at %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
