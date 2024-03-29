@@ -1,7 +1,11 @@
 class ApplicationJob < ActiveJob::Base
-  # Automatically retry jobs that encountered a deadlock
-  # retry_on ActiveRecord::Deadlocked
+  around_perform :handle_exceptions
 
-  # Most jobs are safe to ignore if the underlying records are no longer available
-  # discard_on ActiveJob::DeserializationError
+  private
+
+  def handle_exceptions
+    yield
+  rescue StandardError => e
+    Rails.logger.error "Add a logger for error #{e}"
+  end
 end

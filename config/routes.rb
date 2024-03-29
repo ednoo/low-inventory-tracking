@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get 'up' => 'rails/health#show', as: :rails_health_check
 
+  require 'sidekiq/web'
+  mount Sidekiq::Web => '/sidekiq'
+
   # Defines the root path route ("/")
   root 'admin/dashboard#index'
 end

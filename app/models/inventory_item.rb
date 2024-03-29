@@ -6,7 +6,7 @@ class InventoryItem < ApplicationRecord
   validates :product_id, uniqueness:
     { scope: :store_id, message: ->(object, _) { "Product #{object.product.name} already exists for Store #{object.store.name}}" } }
 
-  after_save :check_inventory_level
+  after_commit :check_inventory_level, on: %i[create update]
 
   LOW_INVENTORY_THRESHOLD = 10
   scope :with_low_quantity_and_associations, -> { where('quantity < ?', LOW_INVENTORY_THRESHOLD).includes(:store, :product) }
@@ -27,10 +27,12 @@ class InventoryItem < ApplicationRecord
   private
 
   def check_inventory_level
-    notify_user if quantity <= LOW_INVENTORY_THRESHOLD
+    return if quantity >= LOW_INVENTORY_THRESHOLD
+
+    notify_user
   end
 
   def notify_user
-    # @TODO
+    NotifyUser.call(notification_type: :low_inventory)
   end
 end

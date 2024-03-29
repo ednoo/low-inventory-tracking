@@ -27,7 +27,7 @@ gem 'stimulus-rails'
 gem 'jbuilder'
 
 # Use Redis adapter to run Action Cable in production
-# gem "redis", ">= 4.0.1"
+gem 'redis', '>= 4.0.1'
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
@@ -46,27 +46,31 @@ gem 'bootsnap', require: false
 
 gem 'eventmachine', '~> 1.2', '>= 1.2.0.1'
 gem 'faye-websocket', '~> 0.10.4'
+gem 'sidekiq', '~> 7.1', '>= 7.1.2'
+gem 'sidekiq-scheduler', '~> 5.0', '>= 5.0.3'
+
+# group :development, :test do
+#   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
+#   gem 'debug', platforms: %i[mri windows]
+# end
+#
+gem 'web-console', require: false, group: :development
 
 group :development, :test do
-  # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem 'debug', platforms: %i[mri windows]
-end
-
-group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
+  gem 'debug', platforms: %i[mri windows]
+  gem 'factory_bot_rails', require: false
+  gem 'faker'
+  gem 'rspec-rails', '~> 6.1', '>= 6.1.2'
   gem 'rubocop', '~> 1.62', require: false
   gem 'rubocop-rails', require: false
-  gem 'web-console'
-
+  gem 'shoulda-matchers', require: false
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
-end
-
-group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
-  gem 'capybara'
-  gem 'selenium-webdriver'
+  # gem 'capybara'
+  # gem 'selenium-webdriver'
 end
