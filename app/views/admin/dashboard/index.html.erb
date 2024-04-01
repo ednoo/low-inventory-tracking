@@ -1,10 +1,17 @@
+<%= link_to 'Notification Settings', edit_admin_notification_setting_path(@current_user.notification_setting.id) %>
 <h1>Inventory Tracking - Low Inventory</h1>
-<% @low_inventories.each do |store, inventory_items| %>
-  <p><%= "Store: #{store.name}" %></p>
 
-  <ul>
-    <% inventory_items.each do |item| %>
-      <li><%= "Product: #{item[:product_name]} | Quantity: #{item[:quantity]}" %></li>
-    <% end %>
-  </ul>
+<div id='inventory-container'>
+<% @low_inventories.each do |store, inventory_items| %>
+  <div>
+    <p><%= "Store: #{store.name}" %></p>
+    <%= link_to 'View Inventory Metrics', '#pretend_link_to_store_inventory_level_history_metrics' %>
+
+    <ul>
+      <% inventory_items.each do |item| %>
+        <li><%= "Product: #{item[:product_name]} | Quantity: #{item[:quantity]}" %></li>
+      <% end %>
+    </ul>
+  </div>
 <% end %>
+</div>
