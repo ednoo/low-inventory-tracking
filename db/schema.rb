@@ -34,16 +34,18 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_28_204757) do
   end
 
   create_table "products", force: :cascade do |t|
-    t.string "type"
-    t.string "name"
+    t.string "type", null: false
+    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_products_on_name", unique: true
   end
 
   create_table "stores", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_stores_on_name", unique: true
   end
 
   create_table "users", force: :cascade do |t|
