@@ -2,6 +2,6 @@
 :scheduler:
   :schedule:
     low_inventory_notify:
-      cron: '*/5 * * * * *'   # Runs once per minute
+      cron: '* * * * *'   # Runs once per minute
       class: LowInventoryNotifyJob
       queue: notification

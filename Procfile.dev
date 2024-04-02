@@ -1,0 +1,4 @@
+api: websocketd --port=8080 ruby shoe-api/inventory.rb
+redis: redis-server
+web: bin/rails server -p 3000
+sidekiq: bundle exec sidekiq -C config/sidekiq.yml
