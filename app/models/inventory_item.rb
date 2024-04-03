@@ -34,7 +34,7 @@ class InventoryItem < ApplicationRecord
   end
 
   def notify_user
-    NotifyUser.call(notification_type: :low_inventory)
+    LowInventoryNotifyRealtimeJob.perform_later
   end
 
   def broadcast_low_inventory
