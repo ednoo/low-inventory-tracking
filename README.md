@@ -1,24 +1,27 @@
-# README
+Shoe Store Potloc Challenge https://github.com/mathieugagne/shoe-store
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Store - Inventory Tracking
 
-Things you may want to cover:
+This app allows users to monitor low inventory for different stores in real time. Users can also update their preferences to receive alerts for low inventory in real time or schedule them hourly or daily.
 
-* Ruby version
+## Setup
+Install gems
+```bash
+bundle install
+```
+##### Reset database, run migrations and seed:
 
-* System dependencies
+```bash
+rake db:drop db:create db:migrate db:seed
+```
 
-* Configuration
+##### Start application:
+```bash
+bin/dev
+```
 
-* Database creation
+Access application in `http://127.0.0.1:3000/`
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+##### Background jobs
+- The LowInventoryNotifyJob is configured with sidekiq-scheduler to run every minute. You can edit the file in config/sidekiq.yml. For generating cron expressions, you can visit CronHubSee `https://crontab.cronhub.io`.
+- The `SyncInventoryJob` is responsible for connecting to the inventory WebSocket. For demonstration purposes, I've set the connection to last 30 seconds. You can edit this in `app/jobs/sync_inventory_job.rb`.
